@@ -4,6 +4,14 @@
  "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<!-- vo -->
 		<typeAlias type="com.useful.web.domain.vo.MsgResultVO" alias="MsgResultVO"/>
+		
+		<!-- dto -->
+		<typeAlias type="com.useful.web.domain.dto.ChatDTO" alias="ChatDTO"/>
+		
+		<!-- util -->
+		<typeAlias type="java.util.HashMap" alias="HashMap"/>
+		
 	</typeAliases>
 </configuration>

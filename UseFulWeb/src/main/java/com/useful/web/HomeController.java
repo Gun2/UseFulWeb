@@ -30,7 +30,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/welcom", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -49,13 +49,13 @@ public class HomeController {
 		return "home";
 	}
 	
-	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test(Locale locale, Model model) {
-		logger.info("test", locale);
-		
-		
-		return "index";
+	@RequestMapping(value = "/import/menu", method = RequestMethod.GET)
+	public String importMenu(Locale locale, Model model) {
+		return "common/menu";
 	}
-	
+
+	@RequestMapping(value = "/import/head", method = RequestMethod.GET)
+	public String importHead(Locale locale, Model model) {
+		return "common/head";
+	}
 }
