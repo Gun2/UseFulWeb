@@ -190,6 +190,58 @@
 		window.onload = function(){
 			
 		}
+		
+		
+		
+	    var ws;
+	    
+        function openSocket(){
+            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED ){
+                writeResponse("WebSocket is already opened.");
+                return;
+            }
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket("ws://localhost:8080/ws/chat.do");
+            
+            ws.onopen = function(event){
+                if(event.data === undefined){
+              		return;
+                }
+                writeResponse(event.data);
+            };
+            
+            ws.onmessage = function(event){
+                console.log('writeResponse');
+                console.log(event.data)
+                //console.log(event.data);
+            };
+            
+            ws.onclose = function(event){
+                console.log("대화 종료");
+            }
+            
+        }
+        
+        function send(){
+           // var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
+            var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
+            ws.send(text);
+            text = "";
+        }
+        
+        function closeSocket(){
+            ws.close();
+        }
+        
+        function writeResponse(text){
+            messages.innerHTML += "<br/>"+text;
+        }
+
+        function clearText(){
+            console.log(messages.parentNode);
+            messages.parentNode.removeChild(messages)
+      	}
+        
     </script>
 
 </body>
