@@ -51,10 +51,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="chat-input-area">
-					<input type="text" class="form-control" placeholder="메시지 입력">
-					<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane-o"></i></button>
-				</div>
             </div>
         </section>    
 

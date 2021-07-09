@@ -13,7 +13,7 @@
                          <span class="icon-bar"></span>
                          <span class="icon-bar"></span>
                      </button>
-                     <a class="navbar-brand" href="index.html"><img src="images/logo-normal.png" alt=""></a>
+                     <a class="navbar-brand" href="/"><img src="images/logo-normal.png" alt=""></a>
                  </div>
                  <div id="navbar" class="navbar-collapse collapse">
                      <ul class="nav navbar-nav">
@@ -46,7 +46,7 @@
          <div class="vertical-header-wrapper">
              <nav class="nav-menu">
                  <div class="logo">
-                     <a href="index.html"><img src="images/logo.png" alt=""></a>
+                     <a href="/"><img src="images/logo.png" alt=""></a>
                  </div><!-- end logo -->
 
                  <div class="margin-block"></div>

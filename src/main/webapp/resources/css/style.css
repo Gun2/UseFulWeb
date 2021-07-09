@@ -2160,6 +2160,8 @@ RESPONSIVE
 .chat-app .chat-area{
 	width:100%;
 	height:100%;
+	border-radius: 0.5em 0.5em 0 0;
+    background-color: #f7f6f6;
 	overflow-y:auto;
 }
 .chat-app .chat-div{
@@ -2185,6 +2187,11 @@ RESPONSIVE
 	margin-left:5px;
 	margin-top:5px;
 	font-size:10px;
+}
+.chat-input-area{
+	height: 20%;
+    background-color: #7d7d7d;
+    border-radius: 0 0 0.5em 0.5em;
 }
 .chat-input-area .form-control{
 	float:left;
