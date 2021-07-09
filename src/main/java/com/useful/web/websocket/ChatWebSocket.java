@@ -1,5 +1,6 @@
 package com.useful.web.websocket;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 
 import com.useful.web.HomeController;
+import com.useful.web.domain.dto.ChatDTO;
 import com.useful.web.service.MsgService;
 import com.useful.web.service.impl.MsgServiceImpl;
 
@@ -32,8 +35,12 @@ public class ChatWebSocket {
 	 private static final List<Session> sessionList = new ArrayList<Session>();
 	 private static final Logger logger = LoggerFactory.getLogger(ChatWebSocket.class);
 	 
+	 public static MsgService msgService;
+	 
 	 @Autowired
-	 MsgService msgService;
+	 public void setMsgService(MsgService msgService) {
+		 ChatWebSocket.msgService = msgService;
+	 }
 
 	 
     @OnOpen
@@ -41,9 +48,10 @@ public class ChatWebSocket {
         logger.info("Open session id:"+session.getId());
         try {
             final Basic basic = session.getBasicRemote();
-            JSONArray recentResult = msgService.selectRecentChat(50);
-            String ip = session.getUserProperties().get("javax.websocket.endpoint.remoteAddress").toString();
-            basic.sendText(ip+"채팅에연결되었습니다.");
+            JSONObject jo = new JSONObject();
+            jo.put("type", "init");
+            jo.put("data", "success");
+            basic.sendText(jo.toString());
         }catch (Exception e) {
             // TODO: handle exception
         	e.printStackTrace();
@@ -52,17 +60,16 @@ public class ChatWebSocket {
     }
     
     /*
-     * 모든 사용자에게 메시지를 전달한다.
      * @param self
      * @param sender
      * @param message
      */
-    private void sendAllSessionToMessage(Session self, String sender, String message) {
+    private void sendAllSessionToMessage(Session self, JSONObject object) {
     	
         try {
             for(Session session : ChatWebSocket.sessionList) {
                 if(!self.getId().equals(session.getId())) {
-                    session.getBasicRemote().sendText(sender+" : "+message);
+                    session.getBasicRemote().sendText(object.toString());
                 }
             }
         }catch (Exception e) {
@@ -73,25 +80,30 @@ public class ChatWebSocket {
     }
     
     /*
-     * 내가 입력하는 메세지
      * @param message
      * @param session
      */
     @OnMessage
     public void onMessage(String message,Session session) {
     	
-    	String sender = message.split(",")[1];
-    	message = message.split(",")[0];
-    	
-        logger.info("Message From "+sender + ": "+message);
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("<나> : "+message);
+            //sender, message
+            JSONObject jo = new JSONObject(message);
+            jo.put("type", "chat");
+            jo.put("date", System.currentTimeMillis());
+            basic.sendText(jo.toString());
+            sendAllSessionToMessage(session, jo);
+            //db chat 로그 저장
+            ChatDTO dto = new ChatDTO();
+            dto.setOwn(jo.get("sender").toString());
+            dto.setMsg(jo.get("message").toString());
+            msgService.insertChat(dto);
         }catch (Exception e) {
             // TODO: handle exception
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-        sendAllSessionToMessage(session, sender, message);
+        
     }
     
     @OnError
@@ -104,4 +116,5 @@ public class ChatWebSocket {
         logger.info("Session "+session.getId()+" has ended");
         sessionList.remove(session);
     }
+    
 }
