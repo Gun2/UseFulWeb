@@ -1,14 +1,20 @@
-# 연습용 Spring 프로젝트
+# Spring 연습 프로젝트
 
 
-# Database create
+## Tech
+- Spring framework 4.3.4.RELEASE
+- Mybatis 3.4.1
+- javax.websocket-api 1.1
+- MariaDB 10.*
 
--- web_test 데이터베이스 구조 내보내기
+
+## Database Create Sql
+```sh
 DROP DATABASE IF EXISTS `web_test`;
 CREATE DATABASE IF NOT EXISTS `web_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `web_test`;
 
--- 테이블 web_test.msg_result 구조 내보내기
+
 DROP TABLE IF EXISTS `msg_result`;
 CREATE TABLE IF NOT EXISTS `msg_result` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,4 +24,4 @@ CREATE TABLE IF NOT EXISTS `msg_result` (
   PRIMARY KEY (`id`),
   KEY `sdate` (`sdate`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='실시간 채팅을 위한 테이블';
-
+```
