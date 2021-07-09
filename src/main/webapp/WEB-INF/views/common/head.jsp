@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Site Meta -->
-    <title>유용한</title>
+    <title>유용한웹</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="<c:url value='/css/font-awesome.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/carousel.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
-
+	<link rel="stylesheet" href="<c:url value='/css/loading.css'/>">
 
     <script src="<c:url value="/js/jquery.min.js"/>"></script>
     <script src="<c:url value="/js/bootstrap.min.js"/>"></script>

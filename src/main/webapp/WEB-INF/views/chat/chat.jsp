@@ -9,6 +9,8 @@
   	<c:import url="/import/head"/>
     <!-- chat -->
     <script src="<c:url value="/js/simple-chat.js"/>"></script>
+    <!-- websocket -->
+     <script src="<c:url value="/js/simple-websocket.js"/>"></script>
 </head>
 <body class="left-menu">  
     
@@ -36,20 +38,12 @@
                     <h3>실시간 채팅</h3>
                     <p>Ip 기반으로 구성된 실시간 채팅 웹 애플리케이션 입니다.</p>
                 </div><!-- end title -->
-				<div id="chatApp" class="chat-app" style="width:100%;height:400px;">
-					<div class="chat-area">
-						<div class="chat-div">
-							<div class="chat-name">
-								127.0.0.1
-							</div>
-							<div class="chat-msg">
-								안녕하세요aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdasdadadasdasdasdasdasdasdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaa
-							</div>
-							<div class="chat-date">
-								2013-11-10 12:13:00
-							</div>
-						</div>
-					</div>
+				<div id="chatApp" class="chat-app" style="width:100%;height:500px;">
+			    	<div style="width:100%;height:100%;display:table;">
+			    		<div style="display:table-cell;vertical-align:middle;text-align:center">
+			    			<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+			    		</div>
+			    	</div>
 				</div>
             </div>
         </section>    
@@ -155,8 +149,14 @@
 				async: true,
 				data: {},  
 				success: function(data){
-					console.log(data)
-				},  
+					console.log(`getRecentChat`);
+					console.log(data);
+					createChat(data.myIp, data.msgList);
+				},
+				error: function(request, status, error){
+					alert('채팅 접속에 실패했습니다.');
+					
+				},
 				dataType: "json"  
 			});  
     	}
@@ -177,67 +177,64 @@
 				dataType: "text"  
 			});  
     	}
-    	
-    	var simpleChat = new SimpleChat(document.getElementById('chatApp'), {
-    		onMsgPost : function(input){
-    			console.log(input);
-    		}
-    	});
-		window.onload = function(){
-			
-		}
-		
-		
-		
-	    var ws;
-	    
-        function openSocket(){
-            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED ){
-                writeResponse("WebSocket is already opened.");
-                return;
-            }
-            //웹소켓 객체 만드는 코드
-            ws = new WebSocket("ws://localhost:8080/ws/chat.do");
-            
-            ws.onopen = function(event){
-                if(event.data === undefined){
-              		return;
-                }
-                writeResponse(event.data);
-            };
-            
-            ws.onmessage = function(event){
-                console.log('writeResponse');
-                console.log(event.data)
-                //console.log(event.data);
-            };
-            
-            ws.onclose = function(event){
-                console.log("대화 종료");
-            }
-            
-        }
-        
-        function send(){
-           // var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
-            var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
-            ws.send(text);
-            text = "";
-        }
-        
-        function closeSocket(){
-            ws.close();
-        }
-        
-        function writeResponse(text){
-            messages.innerHTML += "<br/>"+text;
-        }
+    	var test;
+    	function createChat(sender, recentChat){
+    	    var ws = new SimpleWebSocket("ws://"+location.host+"/ws/chat.do", {
+    	    	onopen : function(event) {
+    	    		console.log("onopen");
+    	    		console.log(event);
+    	    	},
+    	    	onmessage : function(event) {
+    	    		console.log("onmessage");
+    	    		console.log(event);
+    	    		if(event.data){
+    	    			var data = JSON.parse(event.data);
+    	    			if(data.type == "chat"){
+    	    				console.log(data);
+    	    				simpleChat.insert(data.sender, data.message, msToDateString(data.date));
+    	    			}
+    	    		}
+    	    	},
+    	    	onclose : function(event){
+    	    		console.log("onmessage");
+    	    		console.log(event);
+    	    	}
+    	    });
+    	    
+    	    if(!ws){
+    	    	alert("소켓 연결에 실패했습니다.");
+    	    	return;
+    	    }
+    	    
+        	var simpleChat = new SimpleChat(document.getElementById('chatApp'), {
+        		onMsgPost : function(input){
+        			if(input.value && input.value.length > 0){
+        				var chat = {
+            					sender : sender,
+            					message : input.value
+            			}
+        				ws.send(JSON.stringify(chat));
+        				input.value = "";
+        			}
+        		}
+        	});
+        	recentChat.reverse().forEach( r => {
+        		simpleChat.insert(r.own, r.msg, r.sdate.substr(0,19));
+        	})
+    		
 
-        function clearText(){
-            console.log(messages.parentNode);
-            messages.parentNode.removeChild(messages)
-      	}
+    	    test = ws;
+    	}
+    	
         
+        window.onload = function(){
+        	getRecentChat();
+        }
+        
+        function msToDateString(m){
+        	var myDate = new Date(m);
+        	return (myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  ('0' + myDate.getDate()).slice(-2) + ' '+myDate.getHours()+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+myDate.getSeconds());
+        }
     </script>
 
 </body>
