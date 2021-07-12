@@ -38,7 +38,7 @@
                     <h3>실시간 채팅</h3>
                     <p>Ip 기반으로 구성된 실시간 채팅 웹 애플리케이션 입니다.</p>
                 </div><!-- end title -->
-				<div id="chatApp" class="chat-app" style="width:100%;height:400px;">
+				<div id="chatApp" class="chat-app" style="width:100%;height:500px;">
 			    	<div style="width:100%;height:100%;display:table;">
 			    		<div style="display:table-cell;vertical-align:middle;text-align:center">
 			    			<div class="lds-ring"><div></div><div></div><div></div><div></div></div>

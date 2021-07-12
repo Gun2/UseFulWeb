@@ -5,6 +5,7 @@
 class SimpleChat {
 	  constructor(targetEl, option={}) {
 		  this._targetEl = targetEl;
+		  this._autoScroll = true;
 		  this._option = {
 				  onMsgPost : function(){},
 				  ...option
@@ -15,6 +16,15 @@ class SimpleChat {
 		  var chatAreaDiv = document.createElement("div");
 		  chatAreaDiv.className="chat-area";
 		  chatAreaDiv.style.height = "80%";
+		  chatAreaDiv.addEventListener('scroll', (e) => {
+			  console.log(e);
+			  var target = e.target;
+			  if(target.offsetHeight + target.scrollTop + 10 >= target.scrollHeight){
+				  this._autoScroll = true;
+			  }else{
+				  this._autoScroll = false;
+			  }
+		  });
 		  var chatInputArea = document.createElement('div');
 		  chatInputArea.className = "chat-input-area";
 		  
@@ -73,7 +83,7 @@ class SimpleChat {
 		this._chatAreaDiv.append(chatDiv);
 		
 		//스크롤 맨 아래면 자동 스크롤
-		if(this.#isChatBottom(chatDiv.offsetHeight)){
+		if(this._autoScroll){
 			this.#scrollBottom();
 		}
 	}
