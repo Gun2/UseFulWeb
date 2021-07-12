@@ -2164,10 +2164,18 @@ RESPONSIVE
     background-color: #f7f6f6;
 	overflow-y:auto;
 }
+
+.chat-area .chat-area-contain{
+	dispaly:table;
+	width:100%;
+	height:100%;
+}
+
 .chat-app .chat-div{
 	height:30px;
 	width:100%;
 	padding:5px;
+	display:table-row;
 }
 
 .chat-div .chat-name,.chat-msg,.chat-date{

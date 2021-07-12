@@ -25,6 +25,9 @@ class SimpleChat {
 				  this._autoScroll = false;
 			  }
 		  });
+		  var chatAreaContainDiv = document.createElement("div");
+		  chatAreaContainDiv.className = 'chat-area-contain';
+          chatAreaDiv.append(chatAreaContainDiv);
 		  var chatInputArea = document.createElement('div');
 		  chatInputArea.className = "chat-input-area";
 		  
@@ -56,6 +59,7 @@ class SimpleChat {
 		  this._targetEl.append(chatAreaDiv);
 		  this._targetEl.append(chatInputArea);
 		  this._chatAreaDiv = chatAreaDiv;
+		  this._chatAreaContainDiv = chatAreaContainDiv;
 		  this._chatButton = button;
 		  this._chatInput = input;
 		  
@@ -80,7 +84,7 @@ class SimpleChat {
 		chatDate.className = "chat-date";
 		chatDiv.append(chatDate);
 		
-		this._chatAreaDiv.append(chatDiv);
+		this._chatAreaContainDiv.append(chatDiv);
 		
 		//스크롤 맨 아래면 자동 스크롤
 		if(this._autoScroll){
@@ -268,33 +272,4 @@ class SimpleChat {
 		return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
 	  	
 	}
-	
-	
-  /*
-   * 
-   * 
-   * 
-<div id="chatApp" class="chat-app" style="width:100%;height:400px;">
-					<div class="chat-area">
-						<div class="chat-div">
-							<div class="chat-name">
-								127.0.0.1
-							</div>
-							<div class="chat-msg">
-								안녕하세요aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdasdadadasdasdasdasdasdasdasdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaa
-							</div>
-							<div class="chat-date">
-								2013-11-10 12:13:00
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="chat-input-area">
-					<input type="text" class="form-control" placeholder="메시지 입력">
-					<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane-o"></i></button>
-				</div>
-
-
-
-   */
 }
