@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- °øÅë Çìµå -->
+	<!-- ê³µí†µ í—¤ë“œ -->
   	<c:import url="/import/head"/>
     <!-- chat -->
     <script src="<c:url value="/js/simple-chat.js"/>"></script>
@@ -23,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="tagline-message">
-                            <h3><mark class="rotate">Hi </mark> À¯¿ëÇÑ ±â´ÉÀ» °³¹ßÇØº¾½Ã´Ù</h3>
+                            <h3><mark class="rotate">Hi </mark> ìœ ìš©í•œ ê¸°ëŠ¥ì„ ê°œë°œí•´ë´…ì‹œë‹¤</h3>
                         </div>
                     </div><!-- end col -->
                 </div><!-- end row -->
@@ -35,8 +34,8 @@
         <section class="section lb">
             <div class="container">
                 <div class="section-title text-center">
-                    <h3>½Ç½Ã°£ Ã¤ÆÃ</h3>
-                    <p>Ip ±â¹ÝÀ¸·Î ±¸¼ºµÈ ½Ç½Ã°£ Ã¤ÆÃ À¥ ¾ÖÇÃ¸®ÄÉÀÌ¼Ç ÀÔ´Ï´Ù.</p>
+                    <h3>ì‹¤ì‹œê°„ ì±„íŒ…</h3>
+                    <p>Ip ê¸°ë°˜ìœ¼ë¡œ êµ¬ì„±ëœ ì‹¤ì‹œê°„ ì±„íŒ… ì›¹ ì• í”Œë¦¬ì¼€ì´ì…˜ ìž…ë‹ˆë‹¤.</p>
                 </div><!-- end title -->
 				<div id="chatApp" class="chat-app" style="width:100%;height:500px;">
 			    	<div style="width:100%;height:100%;display:table;">
@@ -54,11 +53,11 @@
                 <div class="row callout">
                     <div class="col-md-4 text-center">
                         <h3><sup></sup>Chat</h3>
-                        <h4>·Î±×ÀÎ ¾ø´Â Ã¤ÆÃ</h4>
+                        <h4>ë¡œê·¸ì¸ ì—†ëŠ” ì±„íŒ…</h4>
                     </div><!-- end col -->
 
                     <div class="col-md-8">
-                        <p class="lead" style="font-size:20px;">·Î±×ÀÎ±îÁö ±¸ÇöÇÏ¸é ½Ã°£ÀÌ ¸¹ÀÌ°É¸®´Ï±î ±×³É IP´ë»óÀ¸·Î ¸¸µé¾ú¾î¿ä.</p>
+                        <p class="lead" style="font-size:20px;">ë¡œê·¸ì¸ê¹Œì§€ êµ¬í˜„í•˜ë©´ ì‹œê°„ì´ ë§Žì´ê±¸ë¦¬ë‹ˆê¹Œ ê·¸ëƒ¥ IPëŒ€ìƒìœ¼ë¡œ ë§Œë“¤ì—ˆì–´ìš”.</p>
                     </div>
                 </div><!-- end row -->
                 </a>
@@ -154,7 +153,7 @@
 					createChat(data.myIp, data.msgList);
 				},
 				error: function(request, status, error){
-					alert('Ã¤ÆÃ Á¢¼Ó¿¡ ½ÇÆÐÇß½À´Ï´Ù.');
+					alert('ì±„íŒ… ì ‘ì†ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.');
 					
 				},
 				dataType: "json"  
@@ -171,7 +170,7 @@
 					if(data == 1){
 						
 					}else{
-						alert('Ã¤ÆÃ ÀÔ·Â¿¡ ½ÇÆÐÇß½À´Ï´Ù.')
+						alert('ì±„íŒ… ìž…ë ¥ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.')
 					}
 				},
 				dataType: "text"  
@@ -202,7 +201,7 @@
     	    });
     	    
     	    if(!ws){
-    	    	alert("¼ÒÄÏ ¿¬°á¿¡ ½ÇÆÐÇß½À´Ï´Ù.");
+    	    	alert("ì†Œì¼“ ì—°ê²°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
     	    	return;
     	    }
     	    

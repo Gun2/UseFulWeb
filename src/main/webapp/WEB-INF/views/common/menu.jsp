@@ -13,7 +13,7 @@
                          <span class="icon-bar"></span>
                          <span class="icon-bar"></span>
                      </button>
-                     <a class="navbar-brand" href="/"><img src="images/logo-normal.png" alt=""></a>
+                     <a class="navbar-brand" href="/"><img src="/images/logo-normal.png" alt=""></a>
                  </div>
                  <div id="navbar" class="navbar-collapse collapse">
                      <ul class="nav navbar-nav">
@@ -46,7 +46,7 @@
          <div class="vertical-header-wrapper">
              <nav class="nav-menu">
                  <div class="logo">
-                     <a href="/"><img src="images/logo.png" alt=""></a>
+                     <a href="/"><img src="/images/logo.png" alt=""></a>
                  </div><!-- end logo -->
 
                  <div class="margin-block"></div>
@@ -55,16 +55,17 @@
                      <li class="child-menu"><a href="/">Chat <i class="fa fa-angle-right"></i></a>
                          
                      </li>
+
                      <li class="child-menu"><a href="/blank1">Lotto <i class="fa fa-angle-right"></i></a>
                          
                      </li>
                      <li class="child-menu"><a href="/blank2">Login <i class="fa fa-angle-right"></i></a>
                          
                      </li>
-                     <li class="child-menu"><a href="/blank3">Blank3 <i class="fa fa-angle-right"></i></a>
+                     <li class="child-menu"><a href="/blank3">Board<i class="fa fa-angle-right"></i></a>
                          
                      </li>
-                     <li class="child-menu"><a href="/blank4">Blank4 <i class="fa fa-angle-right"></i></a>
+                     <li class="child-menu"><a href="/blank4">asd <i class="fa fa-angle-right"></i></a>
                          
                      </li>
                      

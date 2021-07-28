@@ -8,6 +8,10 @@
 		<typeAlias type="com.useful.web.domain.vo.MsgResultVO" alias="MsgResultVO"/>
 		<typeAlias type="com.useful.web.domain.vo.LottoResultVO" alias = "LottoResultVO"/>
 		
+		<typeAlias type="com.useful.web.domain.vo.Blank3VO" alias="Blank3VO"/>
+		
+		<typeAlias type="com.useful.web.domain.vo.ReplyVO" alias="ReplyVO"/>
+		
 		<!-- dto -->
 		<typeAlias type="com.useful.web.domain.dto.ChatDTO" alias="ChatDTO"/>
 		<typeAlias type="com.useful.web.domain.dto.LottoDTO" alias="LottoDTO"/>
