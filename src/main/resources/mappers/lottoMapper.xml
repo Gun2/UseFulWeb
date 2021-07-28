@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lottoMapper">
+	<select id="selectAllFirstPlace" resultType="LottoResultVO">
+		select * from
+		lt_drw_result;
+	</select>
+
+	<select id="selectRound" resultType="LottoResultVO">
+		select
+		lt_code,
+		lt_drw_no,
+		lt_drwt_no_1,
+		lt_drwt_no_2,
+		lt_drwt_no_3,
+		lt_drwt_no_4,
+		lt_drwt_no_5,
+		lt_drwt_no_6,
+		lt_tot_sell_amnt,
+		lt_first_win_amnt,
+		lt_drw_date
+		from
+		lt_drw_result order by lt_drw_no DESC;
+	</select>
+
+	<insert id="insertLotto" parameterType="LottoDTO">
+		INSERT IGNORE INTO
+		lt_drw_result VAlUES(
+		NULL,
+		#{lt_drw_no},
+		#{lt_drwt_no_1},
+		#{lt_drwt_no_2},
+		#{lt_drwt_no_3},
+		#{lt_drwt_no_4},
+		#{lt_drwt_no_5},
+		#{lt_drwt_no_6},
+		#{lt_tot_sell_amnt},
+		#{lt_first_win_amnt},
+		#{lt_drw_date});
+	</insert>
+
+	<!-- 게시물 총 갯수(s) -->
+	<select id="searchCount" parameterType="HashMap" resultType="int">
+		<!--  select count(lt_drw_no) from
+		lt_drw_result
+		-->
+		<!-- <if test='searchType.equals("lt_drw_no")'>
+			where lt_drw_no like concat('%',#{keyword},'%')
+		</if> -->
+		select count(*) from lt_drw_result
+		<if test='searchType.equals("lt_drw_no")'>
+			<if test='keyword != ""'>
+				where lt_drw_no = #{keyword}
+			</if>
+		</if>
+	</select>
+	<!-- 게시물 총 갯수(e) -->
+
+	<!-- 게시물 목록 + 페이징(s) -->
+	<select id="listPageSearch" parameterType="hashMap"
+		resultType="LottoResultVO">
+		select * from lt_drw_result
+		<if test='searchType.equals("lt_drw_no")'>
+			<if test='keyword != ""'>
+				where lt_drw_no = #{keyword}
+			</if>
+		</if>
+		order by lt_drw_no desc
+		limit #{displayPost},#{postNum}
+	</select>
+	<!-- 게시물 목록 + 페이징(e) -->
+
+</mapper>

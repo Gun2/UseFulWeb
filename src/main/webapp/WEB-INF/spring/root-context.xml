@@ -19,8 +19,8 @@
         <property name="url"
             value="jdbc:mysql://127.0.0.1:3306/web_test?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useUnicode=true">
         </property>
-        <property name="username" value="test"></property>
-        <property name="password" value="mysql123"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="password"></property>
     </bean>        
     
    
@@ -35,4 +35,7 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
  		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
+	<context:component-scan base-package="com.useful.web.domain.vo"/>
+	<context:component-scan base-package="com.useful.web.domain.dao"/>
+	<context:component-scan base-package="com.useful.web.service"/>
 </beans>

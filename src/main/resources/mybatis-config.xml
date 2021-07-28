@@ -6,9 +6,11 @@
 	<typeAliases>
 		<!-- vo -->
 		<typeAlias type="com.useful.web.domain.vo.MsgResultVO" alias="MsgResultVO"/>
+		<typeAlias type="com.useful.web.domain.vo.LottoResultVO" alias = "LottoResultVO"/>
 		
 		<!-- dto -->
 		<typeAlias type="com.useful.web.domain.dto.ChatDTO" alias="ChatDTO"/>
+		<typeAlias type="com.useful.web.domain.dto.LottoDTO" alias="LottoDTO"/>
 		
 		<!-- util -->
 		<typeAlias type="java.util.HashMap" alias="HashMap"/>
