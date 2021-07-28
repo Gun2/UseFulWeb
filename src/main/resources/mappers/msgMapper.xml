@@ -3,20 +3,22 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="msgMapper">
-	<select id="selectAllMsgResult" resultType="MsgResultVO">
-		select * from msg_result;
+	<select id="selectAllMsgResult" resultType="LottoResultVO">
+		select * from
+		msg_result;
 	</select>
 
-	<select id="selectRecentChat" parameterType="int" resultType="HashMap">
+	<select id="selectRecentChat" parameterType="int"
+		resultType="HashMap">
 		select * from msg_result order by id desc limit #{limit}
 	</select>
-	
+
 	<insert id="insertChat" parameterType="ChatDTO">
-		insert msg_result 
+		insert msg_result
 		set
-			msg = #{msg},
-			own = #{own},
-			sdate = now()
+		msg = #{msg},
+		own = #{own},
+		sdate = now()
 	</insert>
 	
 </mapper>
