@@ -55,10 +55,10 @@
                      <li class="child-menu"><a href="/">Chat <i class="fa fa-angle-right"></i></a>
                          
                      </li>
-                     <li class="child-menu"><a href="/blank1">Blank1 <i class="fa fa-angle-right"></i></a>
+                     <li class="child-menu"><a href="/blank1">Lotto <i class="fa fa-angle-right"></i></a>
                          
                      </li>
-                     <li class="child-menu"><a href="/blank2">Blank2 <i class="fa fa-angle-right"></i></a>
+                     <li class="child-menu"><a href="/blank2">Login <i class="fa fa-angle-right"></i></a>
                          
                      </li>
                      <li class="child-menu"><a href="/blank3">Blank3 <i class="fa fa-angle-right"></i></a>
