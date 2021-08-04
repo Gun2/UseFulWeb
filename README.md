@@ -1,5 +1,8 @@
-# Spring 연습 프로젝트
 
+# Spring 채팅 예제 및 연습 프로젝트
+ 
+
+> websocket을 활용한 채팅 페이지와 4개의 빈 페이지로 구성되어 있음
 
 ## Tech
 - Spring framework 4.3.4.RELEASE
