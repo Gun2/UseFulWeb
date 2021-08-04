@@ -4,6 +4,9 @@
 
 > websocket을 활용한 채팅 페이지와 4개의 빈 페이지로 구성되어 있음
 
+![AnyConv com__채팅예제](https://user-images.githubusercontent.com/32568291/128261797-05ef2369-882d-4ef9-b83a-8b056eeb962e.gif)
+
+
 ## Tech
 - Spring framework 4.3.4.RELEASE
 - Mybatis 3.4.1
