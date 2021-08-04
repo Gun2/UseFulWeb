@@ -58,7 +58,7 @@
                     </div><!-- end col -->
 
                     <div class="col-md-8">
-                        <p class="lead" style="font-size:20px;">로그인까지 구현하면 시간이 많이걸리니까 그냥 IP대상으로 만들었어요.</p>
+                        <p class="lead" style="font-size:20px;">IP대상으로 만들었어요!</p>
                     </div>
                 </div><!-- end row -->
                 </a>
